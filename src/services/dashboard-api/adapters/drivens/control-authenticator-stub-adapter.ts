@@ -1,9 +1,9 @@
-import { AuthDetails, Permissions } from "../../app/schemas";
-import { ForControlAuthenticating } from "../../ports/drivens";
+import type { AuthDetails, Permissions } from "../../app/schemas";
+import type { ForControlAuthenticating } from "../../ports/drivens";
 
 const authDetailsMock: AuthDetails = {
-  token: "dhvsgtvdgs",
-  refreshToken: "jdbsgvdg",
+  token: "token",
+  refreshToken: "refreshToken",
 };
 
 const permissionsMock: Permissions = { admin: true, user: true };

@@ -1,4 +1,4 @@
-import { AuthDetails, Permissions } from "../../app/schemas";
+import type { AuthDetails, Permissions } from "../../app/schemas";
 
 export interface ForControlAuthenticating {
   getAuthDetails(email: string, password: string): Promise<AuthDetails>;

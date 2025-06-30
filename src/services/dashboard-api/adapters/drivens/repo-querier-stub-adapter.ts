@@ -1,6 +1,6 @@
-import { User as RepoUser } from "../../../repository/app/schemas";
-import { User } from "../../app/schemas";
-import { ForRepoQuerying } from "../../ports/drivens";
+import type { User as RepoUser } from "../../../repository/app/schemas";
+import type { User } from "../../app/schemas";
+import type { ForRepoQuerying } from "../../ports/drivens";
 
 const userMock: RepoUser = {
   email: "test@test.com",

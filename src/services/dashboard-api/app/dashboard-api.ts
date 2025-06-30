@@ -1,5 +1,9 @@
-import { ForControlAuthenticating, ForRepoQuerying } from "../ports/drivens";
-import { AuthenticatedUser, ForAuthenticating, User } from "../ports/drivers";
+import type {
+  ForControlAuthenticating,
+  ForRepoQuerying,
+} from "../ports/drivens";
+import type { ForAuthenticating } from "../ports/drivers";
+import type { AuthenticatedUser, User } from "./schemas";
 
 export class DashboradApi implements ForAuthenticating {
   constructor(
@@ -20,7 +24,7 @@ export class DashboradApi implements ForAuthenticating {
     const result: AuthenticatedUser = {
       ...user,
       ...authDetails,
-      ...permissions,
+      permissions,
     };
     console.log("login", result);
 
@@ -40,7 +44,7 @@ export class DashboradApi implements ForAuthenticating {
     const result: AuthenticatedUser = {
       ...newUser,
       ...authDetails,
-      ...permissions,
+      permissions,
     };
     console.log("register", result);
 
