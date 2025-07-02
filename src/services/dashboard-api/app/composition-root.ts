@@ -1,7 +1,7 @@
 import { ControlAuthenticatorStub, RepoQuerierStub } from "../adapters/drivens";
 import { AuthenticatorProxyAdapter } from "../adapters/drivers";
 import { DashboradApi } from "./dashboard-api";
-import { User } from "./schemas";
+import type { User } from "./schemas";
 
 const compositionMock = () => {
   const controlAuthenticatorStub = new ControlAuthenticatorStub();
@@ -22,5 +22,9 @@ export const { authenticatorProxyAdapter } = compositionMock();
 
 // Testing
 authenticatorProxyAdapter.login("hector@gmail.com", "12345");
-const registerMock: User = { email: "sherly@gmail.com", name: "ingrid" };
+const registerMock: User = {
+  email: "sherly@gmail.com",
+  name: "ingrid",
+  password: "12345",
+};
 authenticatorProxyAdapter.register(registerMock, "12345");
