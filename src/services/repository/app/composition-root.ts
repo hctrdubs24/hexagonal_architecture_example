@@ -22,4 +22,4 @@ const registerMock: User = {
 
 userManagerProxy.getUser(registerMock.email);
 
-userManagerProxy.createUser(registerMock, registerMock.password);
+userManagerProxy.createUser(registerMock);
