@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { ControlAuthenticatorStub, RepoQuerierStub } from "../adapters/drivens";
-import { DashboradApi } from "./dashboard-api";
+import { DashboardApi } from "./dashboard-api";
 import type { AuthenticatedUser, User } from "./schemas";
 
 describe("DashboardApi", () => {
   const controlAuthenticatorStub = new ControlAuthenticatorStub();
   const repoQuerierStub = new RepoQuerierStub();
-  const dashboardApiMock = new DashboradApi(
+  const dashboardApiMock = new DashboardApi(
     controlAuthenticatorStub,
     repoQuerierStub,
   );

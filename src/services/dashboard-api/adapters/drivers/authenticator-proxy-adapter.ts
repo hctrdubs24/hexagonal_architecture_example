@@ -1,9 +1,9 @@
-import { DashboradApi } from "../../app/dashboard-api";
+import { DashboardApi } from "../../app/dashboard-api";
 import type { AuthenticatedUser, User } from "../../app/schemas";
 import type { ForAuthenticating } from "../../ports/drivers";
 
 export class AuthenticatorProxyAdapter implements ForAuthenticating {
-  constructor(private readonly dashboardApi: DashboradApi) {}
+  constructor(private readonly dashboardApi: DashboardApi) {}
   async login(email: string, password: string): Promise<AuthenticatedUser> {
     return await this.dashboardApi.login(email, password);
   }

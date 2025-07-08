@@ -5,7 +5,7 @@ import type {
 import type { ForAuthenticating } from "../ports/drivers";
 import type { AuthenticatedUser, User } from "./schemas";
 
-export class DashboradApi implements ForAuthenticating {
+export class DashboardApi implements ForAuthenticating {
   constructor(
     private readonly controlAuthenticator: ForControlAuthenticating,
     private readonly repoQuerier: ForRepoQuerying,

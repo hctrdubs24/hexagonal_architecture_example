@@ -51,13 +51,10 @@ export class ControlPlane implements ForManagingAuthDetails {
       throw new Error("User not found or password is incorrect");
     }
 
-    const result: Permissions = {
-      admin: user.admin,
-      user: user.user,
-    };
+    const { permissions } = user;
 
-    console.log("PERMISSIONS", result);
+    console.log("PERMISSIONS", permissions);
 
-    return result;
+    return permissions;
   }
 }

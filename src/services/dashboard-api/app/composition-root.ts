@@ -1,16 +1,23 @@
+import { initTRPC } from "@trpc/server";
 import { ControlAuthenticatorStub, RepoQuerierStub } from "../adapters/drivens";
-import { AuthenticatorProxyAdapter } from "../adapters/drivers";
-import { DashboradApi } from "./dashboard-api";
-import type { User } from "./schemas";
+import {
+  AuthenticatorProxyAdapter,
+  authTRPCAdapter,
+} from "../adapters/drivers";
+import { DashboardApi } from "./dashboard-api";
 
 const compositionMock = () => {
+  // DRIVENS
   const controlAuthenticatorStub = new ControlAuthenticatorStub();
   const repoQuerierStub = new RepoQuerierStub();
-  const dashboardApiMock = new DashboradApi(
+
+  // APP
+  const dashboardApiMock = new DashboardApi(
     controlAuthenticatorStub,
     repoQuerierStub,
   );
 
+  // DRIVERS
   const authenticatorProxyAdapter = new AuthenticatorProxyAdapter(
     dashboardApiMock,
   );
@@ -20,11 +27,33 @@ const compositionMock = () => {
 
 export const { authenticatorProxyAdapter } = compositionMock();
 
-// Testing
-authenticatorProxyAdapter.login("hector@gmail.com", "12345");
-const registerMock: User = {
-  email: "sherly@gmail.com",
-  name: "ingrid",
-  password: "12345",
+export const localTrpcCompose = () => {
+  // DRIVENS
+  const controlAuthenticatorStub = new ControlAuthenticatorStub();
+  const repoQuerierStub = new RepoQuerierStub();
+
+  // APP
+  const dashboardApiMock = new DashboardApi(
+    controlAuthenticatorStub,
+    repoQuerierStub,
+  );
+
+  // TRPC Instance
+  const t = initTRPC.create();
+
+  // TRPC DRIVER
+  const authTrpcAdapterRouter = authTRPCAdapter(dashboardApiMock, t);
+
+  const appRouter = t.router({ auth: authTrpcAdapterRouter });
+
+  return { appRouter };
 };
-authenticatorProxyAdapter.register(registerMock, "12345");
+
+// Testing
+// authenticatorProxyAdapter.login("hector@gmail.com", "12345");
+// const registerMock: User = {
+//   email: "sherly@gmail.com",
+//   name: "ingrid",
+//   password: "12345",
+// };
+// authenticatorProxyAdapter.register(registerMock, "12345");
